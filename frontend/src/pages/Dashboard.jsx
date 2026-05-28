@@ -4,7 +4,7 @@ import PatientDashboard from "./PatientDashboard";
 
 import DoctorDashboard from "./DoctorDashboard";
 
-import PharmacyDashboard from "./PharmacyDashboard";
+import PharmacyDashboard from "./PharmacyDashBoard";
 
 
 const Dashboard = () => {
