@@ -1,44 +1,149 @@
 import { useNavigate } from "react-router-dom";
 
-
-
 const AppointmentCards = ({
 
   appointments,
 
   updateStatus,
 
-  fetchAppointments,
+  setAppointments,
 
 }) => {
 
   const navigate =
     useNavigate();
 
+  // APPROVE
+  const handleApprove = (
+    appointmentId
+  ) => {
 
+    // BACKEND UPDATE
+    updateStatus(
+      appointmentId,
+      "approved"
+    );
+
+    // FRONTEND INSTANT UPDATE
+    setAppointments(
+
+      prev =>
+
+        prev.map(item =>
+
+          item._id ===
+          appointmentId
+
+            ?
+
+            {
+              ...item,
+              status: "approved",
+            }
+
+            :
+
+            item
+        )
+
+    );
+
+  };
+
+  // REJECT
+  const handleReject = (
+    appointmentId
+  ) => {
+
+    // BACKEND UPDATE
+    updateStatus(
+      appointmentId,
+      "cancelled"
+    );
+
+    // FRONTEND INSTANT UPDATE
+    setAppointments(
+
+      prev =>
+
+        prev.map(item =>
+
+          item._id ===
+          appointmentId
+
+            ?
+
+            {
+              ...item,
+              status: "cancelled",
+            }
+
+            :
+
+            item
+        )
+
+    );
+
+  };
+
+  // REMOVE CARD ONLY FROM UI
+  const handleRemoveCard = (
+    appointmentId
+  ) => {
+
+    setAppointments(
+
+      prev =>
+
+        prev.filter(
+
+          item =>
+
+            item._id !==
+            appointmentId
+        )
+
+    );
+
+  };
 
   return (
 
-    <div>
+    <div className="w-full">
 
+      {/* HEADER */}
       <div className="
         flex
         items-center
         justify-between
         mb-8
+        flex-wrap
+        gap-4
       ">
 
-        <h2 className="
-          text-3xl
-          font-bold
-          text-blue-700
-        ">
+        <div>
 
-          Patient Appointments 📅
+          <h1 className="
+            text-3xl
+            font-bold
+            text-blue-700
+          ">
 
-        </h2>
+            Patient Appointments
 
+          </h1>
 
+          <p className="
+            text-gray-500
+            mt-1
+          ">
+
+            Manage and review patient appointments
+
+          </p>
+
+        </div>
 
         <div className="
           bg-blue-100
@@ -47,27 +152,24 @@ const AppointmentCards = ({
           py-2
           rounded-full
           font-semibold
+          text-sm
         ">
 
           {appointments.length}
           {" "}
-          Total
+          Total Appointments
 
         </div>
 
       </div>
-
-
-
-
 
       {/* EMPTY */}
       {appointments.length === 0 ? (
 
         <div className="
           bg-white
-          rounded-2xl
-          shadow-lg
+          rounded-3xl
+          shadow-md
           p-10
           text-center
         ">
@@ -102,95 +204,126 @@ const AppointmentCards = ({
               key={appointment._id}
 
               className="
+                relative
                 bg-white
-                rounded-2xl
-                shadow-lg
-                p-6
-                hover:shadow-2xl
-                transition-all
-                duration-300
+                rounded-3xl
                 border
                 border-gray-100
+                shadow-md
+                hover:shadow-xl
+                transition-all
+                duration-300
+                p-6
               "
             >
 
+              {/* REMOVE CARD */}
+              <button
 
+                onClick={() =>
 
+                  handleRemoveCard(
+                    appointment._id
+                  )
 
-              {/* PATIENT INFO */}
+                }
+
+                className="
+                  absolute
+                  top-3
+                  right-3
+                  text-gray-400
+                  hover:text-red-500
+                  transition
+                  text-sm
+                  font-bold
+                "
+              >
+
+                ✕
+
+              </button>
+
+              {/* TOP */}
               <div className="
                 flex
                 items-center
                 gap-4
-                mb-6
+                mb-8
               ">
 
+                {/* AVATAR */}
+                <div className={`
+                  w-16
+                  h-16
+                  rounded-full
+                  flex
+                  items-center
+                  justify-center
+                  text-2xl
+                  font-bold
+                  shrink-0
 
+                  ${
+                    appointment.status ===
+                    "approved"
 
+                    ?
 
-                {/* PREMIUM AVATAR */}
-                <div
-                  className="
-                    w-16
-                    h-16
-                    rounded-full
-                    bg-gradient-to-r
-                    from-blue-500
-                    to-cyan-500
-                    flex
-                    items-center
-                    justify-center
-                    shadow-lg
-                  "
-                >
+                    "bg-green-100 text-green-700"
 
-                  <span
-                    className="
-                      text-white
-                      text-2xl
-                      font-bold
-                    "
-                  >
+                    :
 
-                    {
-                      appointment.patient.name
-                        ?.charAt(0)
-                        ?.toUpperCase()
-                    }
+                    appointment.status ===
+                    "cancelled"
 
-                  </span>
+                    ?
+
+                    "bg-red-100 text-red-700"
+
+                    :
+
+                    "bg-blue-100 text-blue-700"
+                  }
+                `}>
+
+                  {
+                    appointment?.patient?.name
+                      ?.charAt(0)
+                      ?.toUpperCase()
+                  }
 
                 </div>
 
+                {/* INFO */}
+                <div className="
+                  overflow-hidden
+                  flex-1
+                ">
 
-
-
-
-                {/* PATIENT DETAILS */}
-                <div>
-
-                  <h3 className="
+                  <h2 className="
                     text-xl
                     font-bold
                     text-gray-800
+                    truncate
                   ">
 
                     {
-                      appointment.patient.name
+                      appointment?.patient
+                      ?.name
                     }
 
-                  </h3>
-
-
+                  </h2>
 
                   <p className="
                     text-gray-500
                     text-sm
-                    break-all
+                    truncate
                   ">
 
                     {
-                      appointment.patient.email
+                      appointment?.patient
+                      ?.email
                     }
 
                   </p>
@@ -199,254 +332,268 @@ const AppointmentCards = ({
 
               </div>
 
-
-
-
+              {/* LINE */}
+              <div className="
+                border-t
+                border-gray-100
+                mb-6
+              " />
 
               {/* DETAILS */}
               <div className="
-                space-y-4
+                grid
+                grid-cols-3
+                gap-4
+                mb-8
+                text-center
               ">
 
-
-
-
                 {/* DATE */}
-                <div className="
-                  flex
-                  justify-between
-                  items-center
-                ">
+                <div>
 
-                  <span className="
-                    text-gray-500
-                    font-medium
+                  <p className="
+                    text-gray-400
+                    text-sm
+                    mb-2
                   ">
 
                     Date
 
-                  </span>
+                  </p>
 
-
-
-                  <span className="
+                  <h3 className="
                     font-semibold
                     text-gray-800
+                    text-sm
                   ">
 
                     {
-                      appointment.appointmentDate
+                      appointment
+                      .appointmentDate
                     }
 
-                  </span>
+                  </h3>
 
                 </div>
 
-
-
-
-
                 {/* TIME */}
-                <div className="
-                  flex
-                  justify-between
-                  items-center
-                ">
+                <div>
 
-                  <span className="
-                    text-gray-500
-                    font-medium
+                  <p className="
+                    text-gray-400
+                    text-sm
+                    mb-2
                   ">
 
                     Time
 
-                  </span>
+                  </p>
 
-
-
-                  <span className="
+                  <h3 className="
                     font-semibold
                     text-gray-800
+                    text-sm
                   ">
 
                     {
-                      appointment.appointmentTime
+                      appointment
+                      .appointmentTime
                     }
 
-                  </span>
+                  </h3>
 
                 </div>
 
-
-
-
-
                 {/* STATUS */}
-                <div className="
-                  flex
-                  justify-between
-                  items-center
-                ">
+                <div>
 
-                  <span className="
-                    text-gray-500
-                    font-medium
+                  <p className="
+                    text-gray-400
+                    text-sm
+                    mb-2
                   ">
 
                     Status
 
-                  </span>
-
-
+                  </p>
 
                   <span className={`
-                    px-4
+                    px-3
                     py-1
                     rounded-full
-                    text-sm
+                    text-xs
                     font-semibold
-                    text-white
 
-                    ${appointment.status === "approved"
+                    ${
+                      appointment.status ===
+                      "approved"
 
-                      ? "bg-green-500"
+                      ?
 
-                      : appointment.status === "completed"
+                      "bg-green-100 text-green-700"
 
-                      ? "bg-blue-600"
+                      :
 
-                      : appointment.status === "cancelled"
+                      appointment.status ===
+                      "cancelled"
 
-                      ? "bg-red-500"
+                      ?
 
-                      : "bg-yellow-500"}
+                      "bg-red-100 text-red-700"
+
+                      :
+
+                      "bg-yellow-100 text-yellow-700"
+                    }
                   `}>
 
-                    {appointment.status}
+                    {
+                      appointment.status
+                    }
 
                   </span>
-
-                </div>
-
-
-
-
-
-                {/* BUTTONS */}
-                <div className="
-                  flex
-                  gap-3
-                  mt-6
-                  flex-wrap
-                ">
-
-
-
-
-                  {/* APPROVE */}
-                  <button
-
-                    onClick={() =>
-                      updateStatus(
-                        appointment._id,
-                        "approved"
-                      )
-                    }
-
-                    className="
-                      w-11
-                      h-11
-                      rounded-full
-                      bg-green-100
-                      hover:bg-green-500
-                      text-green-600
-                      hover:text-white
-                      text-xl
-                      font-bold
-                      transition-all
-                      duration-300
-                      flex
-                      items-center
-                      justify-center
-                    "
-                  >
-
-                    ✓
-
-                  </button>
-
-
-
-
-
-                  {/* REJECT */}
-                  <button
-
-                    onClick={() =>
-                      updateStatus(
-                        appointment._id,
-                        "cancelled"
-                      )
-                    }
-
-                    className="
-                      w-11
-                      h-11
-                      rounded-full
-                      bg-red-100
-                      hover:bg-red-500
-                      text-red-600
-                      hover:text-white
-                      text-xl
-                      font-bold
-                      transition-all
-                      duration-300
-                      flex
-                      items-center
-                      justify-center
-                    "
-                  >
-
-                    ✕
-
-                  </button>
-
-
-
-
-
-                  {/* VIEW DETAILS */}
-                  <button
-
-                    onClick={() =>
-
-                      navigate(
-
-                        `/prescription/${appointment._id}`
-
-                      )
-
-                    }
-
-                    className="
-                      bg-blue-600
-                      hover:bg-blue-700
-                      text-white
-                      px-4
-                      py-2
-                      rounded-xl
-                      font-semibold
-                      transition
-                    "
-                  >
-
-                    View Details
-
-                  </button>
 
                 </div>
 
               </div>
+
+              {/* BUTTONS */}
+              <div className="
+                flex
+                gap-3
+                mt-4
+              ">
+
+                {/* APPROVE */}
+                <button
+
+                  onClick={() =>
+
+                    handleApprove(
+                      appointment._id
+                    )
+
+                  }
+
+                  className={`
+                    flex-1
+                    py-3
+                    rounded-2xl
+                    font-semibold
+                    transition-all
+                    duration-300
+
+                    ${
+                      appointment.status ===
+                      "approved"
+
+                      ?
+
+                      "bg-green-500 text-white"
+
+                      :
+
+                      "bg-green-100 hover:bg-green-500 hover:text-white text-green-700"
+                    }
+                  `}
+                >
+
+                  {
+                    appointment.status ===
+                    "approved"
+
+                    ?
+
+                    "Approved"
+
+                    :
+
+                    "Approve"
+                  }
+
+                </button>
+
+                {/* REJECT */}
+                <button
+
+                  onClick={() =>
+
+                    handleReject(
+                      appointment._id
+                    )
+
+                  }
+
+                  className={`
+                    flex-1
+                    py-3
+                    rounded-2xl
+                    font-semibold
+                    transition-all
+                    duration-300
+
+                    ${
+                      appointment.status ===
+                      "cancelled"
+
+                      ?
+
+                      "bg-red-500 text-white"
+
+                      :
+
+                      "bg-red-100 hover:bg-red-500 hover:text-white text-red-700"
+                    }
+                  `}
+                >
+
+                  {
+                    appointment.status ===
+                    "cancelled"
+
+                    ?
+
+                    "Rejected"
+
+                    :
+
+                    "Reject"
+                  }
+
+                </button>
+
+              </div>
+
+              {/* DETAILS BUTTON */}
+              <button
+
+                onClick={() =>
+
+                  navigate(
+
+                    `/prescription/${appointment._id}`
+
+                  )
+
+                }
+
+                className="
+                  w-full
+                  mt-4
+                  bg-blue-600
+                  hover:bg-blue-700
+                  text-white
+                  py-3
+                  rounded-2xl
+                  font-semibold
+                  transition-all
+                  duration-300
+                "
+              >
+
+                View Details
+
+              </button>
 
             </div>
 
@@ -460,7 +607,5 @@ const AppointmentCards = ({
 
   );
 };
-
-
 
 export default AppointmentCards;

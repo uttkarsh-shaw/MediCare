@@ -125,21 +125,26 @@ const PrescriptionForm = ({
         console.log(data);
 
 
+        // SUCCESS TOASTER
         toast.success(
-          "Prescription Saved"
+          "Prescription Saved Successfully ✅"
         );
 
 
-        fetchAppointments();
+        // REFRESH DATA
+        await fetchAppointments();
 
+
+        // CLOSE FORM
         setShowForm(false);
 
       } catch (error) {
 
         console.log(error);
 
+        // ERROR TOASTER
         toast.error(
-          "Failed To Save Prescription"
+          "Failed To Save Prescription ❌"
         );
 
       }

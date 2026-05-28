@@ -121,7 +121,8 @@ const AdminLogin = () => {
       items-center
       justify-center
       bg-gray-100
-      p-6
+      px-4
+      py-10
     ">
 
       <form
@@ -131,7 +132,7 @@ const AdminLogin = () => {
         className="
           bg-white
           p-8
-          rounded-2xl
+          rounded-3xl
           shadow-xl
           w-full
           max-w-md
@@ -167,9 +168,14 @@ const AdminLogin = () => {
           className="
             w-full
             border
-            p-3
-            rounded-lg
-            mb-4
+            border-gray-300
+            focus:border-blue-500
+            outline-none
+            p-4
+            rounded-2xl
+            mb-5
+            text-black
+            placeholder:text-gray-500
           "
 
           required
@@ -192,9 +198,14 @@ const AdminLogin = () => {
           className="
             w-full
             border
-            p-3
-            rounded-lg
+            border-gray-300
+            focus:border-blue-500
+            outline-none
+            p-4
+            rounded-2xl
             mb-6
+            text-black
+            placeholder:text-gray-500
           "
 
           required
@@ -211,9 +222,10 @@ const AdminLogin = () => {
             bg-blue-700
             text-white
             py-3
-            rounded-lg
+            rounded-2xl
             hover:bg-blue-800
             transition
+            font-semibold
           "
         >
 
@@ -241,6 +253,7 @@ const AdminLogin = () => {
       </form>
 
     </div>
+
   );
 };
 

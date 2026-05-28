@@ -8,43 +8,35 @@ from "../components/DoctorProfileCard";
 import AppointmentCards
 from "../components/AppointmentCards";
 
-
 const DoctorDashboard = () => {
 
   const [doctor, setDoctor] =
     useState(null);
 
-
   const [appointments,
     setAppointments] =
     useState([]);
-
 
   const [editMode,
     setEditMode] =
     useState(false);
 
-
   const [timings,
     setTimings] =
     useState("");
-
 
   const [consultationFee,
     setConsultationFee] =
     useState("");
 
-
   const [availability,
     setAvailability] =
     useState(true);
-
 
   // IMAGE STATE
   const [image,
     setImage] =
     useState(null);
-
 
   // FETCH PROFILE
   const fetchDoctorProfile =
@@ -60,7 +52,6 @@ const DoctorDashboard = () => {
             )
 
           );
-
 
         const response =
           await fetch(
@@ -80,10 +71,8 @@ const DoctorDashboard = () => {
 
           );
 
-
         const data =
           await response.json();
-
 
         setDoctor(data);
 
@@ -106,7 +95,6 @@ const DoctorDashboard = () => {
       }
     };
 
-
   // FETCH APPOINTMENTS
   const fetchAppointments =
     async () => {
@@ -121,7 +109,6 @@ const DoctorDashboard = () => {
             )
 
           );
-
 
         const response =
           await fetch(
@@ -141,7 +128,6 @@ const DoctorDashboard = () => {
 
           );
 
-
         const data =
           await response.json();
 
@@ -154,7 +140,6 @@ const DoctorDashboard = () => {
       }
     };
 
-
   useEffect(() => {
 
     fetchDoctorProfile();
@@ -162,7 +147,6 @@ const DoctorDashboard = () => {
     fetchAppointments();
 
   }, []);
-
 
   // UPDATE STATUS
   const updateStatus =
@@ -178,7 +162,6 @@ const DoctorDashboard = () => {
             )
 
           );
-
 
         await fetch(
 
@@ -208,16 +191,12 @@ const DoctorDashboard = () => {
 
         );
 
-
-        fetchAppointments();
-
       } catch (error) {
 
         console.log(error);
 
       }
     };
-
 
   // UPDATE PROFILE
   const updateProfile =
@@ -234,29 +213,24 @@ const DoctorDashboard = () => {
 
           );
 
-
         // FORMDATA
         const formData =
           new FormData();
-
 
         formData.append(
           "timings",
           timings
         );
 
-
         formData.append(
           "consultationFee",
           consultationFee
         );
 
-
         formData.append(
           "availability",
           availability
         );
-
 
         // IMAGE
         if (image) {
@@ -267,7 +241,6 @@ const DoctorDashboard = () => {
           );
 
         }
-
 
         const response =
           await fetch(
@@ -291,18 +264,15 @@ const DoctorDashboard = () => {
 
           );
 
-
         const data =
           await response.json();
 
         console.log(data);
 
-
         // SUCCESS TOAST
         toast.success(
           "Profile Updated Successfully"
         );
-
 
         fetchDoctorProfile();
 
@@ -321,7 +291,6 @@ const DoctorDashboard = () => {
 
       }
     };
-
 
   // LOADING
   if (!doctor) {
@@ -343,7 +312,6 @@ const DoctorDashboard = () => {
 
     );
   }
-
 
   return (
 
@@ -382,7 +350,6 @@ const DoctorDashboard = () => {
 
         </div>
 
-
         {/* PROFILE CARD */}
         <DoctorProfileCard
 
@@ -416,7 +383,6 @@ const DoctorDashboard = () => {
 
         />
 
-
         {/* APPOINTMENT CARDS */}
         <AppointmentCards
 
@@ -424,9 +390,7 @@ const DoctorDashboard = () => {
 
           updateStatus={updateStatus}
 
-          fetchAppointments={
-            fetchAppointments
-          }
+          setAppointments={setAppointments}
 
         />
 
