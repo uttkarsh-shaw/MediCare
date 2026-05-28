@@ -28,7 +28,6 @@ const Register = () => {
 
     });
 
-
   const handleChange = (e) => {
 
     setFormData({
@@ -41,7 +40,6 @@ const Register = () => {
     });
 
   };
-
 
   const handleSubmit =
     async (e) => {
@@ -57,12 +55,10 @@ const Register = () => {
 
         console.log(data);
 
-
         // SUCCESS TOAST
         toast.success(
           "Registration Successful"
         );
-
 
         // REDIRECT
         setTimeout(() => {
@@ -81,7 +77,6 @@ const Register = () => {
       }
     };
 
-
   return (
 
     <div className="
@@ -90,7 +85,8 @@ const Register = () => {
       items-center
       justify-center
       bg-gray-100
-      p-6
+      px-4
+      py-10
     ">
 
       <form
@@ -100,25 +96,41 @@ const Register = () => {
         className="
           bg-white
           p-8
-          rounded-2xl
+          rounded-3xl
           shadow-xl
           w-full
           max-w-md
+          mx-auto
         "
       >
 
-        <h1 className="
-          text-3xl
-          font-bold
+        {/* HEADING */}
+        <div className="
           text-center
-          text-blue-700
-          mb-6
+          mb-8
         ">
 
-          Create Account
+          <h1 className="
+            text-4xl
+            font-bold
+            text-blue-700
+            mb-2
+          ">
 
-        </h1>
+            Create Account
 
+          </h1>
+
+          <p className="
+            text-gray-500
+          ">
+
+            Register to start your
+            healthcare journey.
+
+          </p>
+
+        </div>
 
         {/* NAME */}
         <input
@@ -136,14 +148,18 @@ const Register = () => {
           className="
             w-full
             border
-            p-3
-            rounded-lg
-            mb-4
+            border-gray-300
+            focus:border-blue-500
+            outline-none
+            p-4
+            rounded-2xl
+            mb-5
+            text-black
+            placeholder:text-gray-500
           "
 
           required
         />
-
 
         {/* EMAIL */}
         <input
@@ -161,14 +177,18 @@ const Register = () => {
           className="
             w-full
             border
-            p-3
-            rounded-lg
-            mb-4
+            border-gray-300
+            focus:border-blue-500
+            outline-none
+            p-4
+            rounded-2xl
+            mb-5
+            text-black
+            placeholder:text-gray-500
           "
 
           required
         />
-
 
         {/* PASSWORD */}
         <input
@@ -186,14 +206,18 @@ const Register = () => {
           className="
             w-full
             border
-            p-3
-            rounded-lg
-            mb-4
+            border-gray-300
+            focus:border-blue-500
+            outline-none
+            p-4
+            rounded-2xl
+            mb-5
+            text-black
+            placeholder:text-gray-500
           "
 
           required
         />
-
 
         {/* ROLE */}
         <select
@@ -207,9 +231,13 @@ const Register = () => {
           className="
             w-full
             border
-            p-3
-            rounded-lg
+            border-gray-300
+            focus:border-blue-500
+            outline-none
+            p-4
+            rounded-2xl
             mb-6
+            text-black
           "
         >
 
@@ -227,7 +255,6 @@ const Register = () => {
 
         </select>
 
-
         {/* BUTTON */}
         <button
 
@@ -237,10 +264,12 @@ const Register = () => {
             w-full
             bg-blue-700
             text-white
-            py-3
-            rounded-lg
+            py-4
+            rounded-2xl
             hover:bg-blue-800
-            transition
+            transition-all
+            duration-300
+            font-semibold
           "
         >
 

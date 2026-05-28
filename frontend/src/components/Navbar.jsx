@@ -1,55 +1,48 @@
 import { Link, useNavigate } from "react-router-dom";
-
 import { useAuth } from "../context/AuthContext";
-
-
 
 const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const { userInfo, logout } =
-    useAuth();
-
-
-
+  const { userInfo, logout } = useAuth();
 
   // LOGOUT
   const handleLogout = () => {
 
     logout();
 
-    // REDIRECT HOME
     navigate("/");
 
   };
 
-
-
-
   return (
 
-    <nav className="
-      bg-blue-700
-      text-white
-      px-6
-      py-4
-      flex
-      justify-between
-      items-center
-      shadow-lg
-    ">
-
-
-
+    <nav
+      className="
+        bg-blue-700
+        text-white
+        px-4
+        md:px-6
+        py-4
+        flex
+        justify-between
+        items-center
+        shadow-lg
+        w-full
+      "
+    >
 
       {/* LOGO */}
       <Link
         to="/"
         className="
-          text-3xl
+          text-[10px]
+          sm:text-2xl
+          md:text-3xl
           font-bold
           tracking-wide
+          whitespace-nowrap
         "
       >
 
@@ -57,24 +50,26 @@ const Navbar = () => {
 
       </Link>
 
-
-
-
-
       {/* NAV LINKS */}
-      <div className="
-        flex
-        gap-6
-        items-center
-      ">
+      <div
+        className="
+          flex
+          items-center
+          gap-3
+          sm:gap-5
+          text-xs
+          sm:text-sm
+          md:text-base
+          ml-auto
+        "
+      >
 
-
-
-
-        {/* HOME */}
+        {/* HOME - LAPTOP ONLY */}
         <Link
           to="/"
           className="
+            hidden
+            md:block
             hover:text-blue-200
             transition
             font-medium
@@ -85,10 +80,6 @@ const Navbar = () => {
 
         </Link>
 
-
-
-
-
         {/* HEALTH INFO */}
         <Link
           to="/health-info"
@@ -96,16 +87,13 @@ const Navbar = () => {
             hover:text-blue-200
             transition
             font-medium
+            whitespace-nowrap
           "
         >
 
-          Health Info
+          Health Hub
 
         </Link>
-
-
-
-
 
         {/* NOT LOGGED IN */}
         {!userInfo ? (
@@ -118,6 +106,7 @@ const Navbar = () => {
                 hover:text-blue-200
                 transition
                 font-medium
+                whitespace-nowrap
               "
             >
 
@@ -125,15 +114,13 @@ const Navbar = () => {
 
             </Link>
 
-
-
-
             <Link
               to="/register"
               className="
                 hover:text-blue-200
                 transition
                 font-medium
+                whitespace-nowrap
               "
             >
 
@@ -147,13 +134,12 @@ const Navbar = () => {
 
           <>
 
-
-
-
-            {/* DOCTORS */}
+            {/* DOCTORS - DESKTOP ONLY */}
             <Link
               to="/doctors"
               className="
+                hidden
+                md:block
                 hover:text-blue-200
                 transition
                 font-medium
@@ -164,13 +150,8 @@ const Navbar = () => {
 
             </Link>
 
-
-
-
-
-            {/* DYNAMIC DASHBOARD */}
+            {/* DASHBOARD */}
             {
-
               userInfo?.role === "admin"
 
                 ? (
@@ -206,31 +187,25 @@ const Navbar = () => {
                   </Link>
 
                 )
-
             }
 
-
-
-
-
-
-            {/* USER NAME */}
-            <div className="
-              bg-blue-600
-              px-4
-              py-2
-              rounded-full
-              font-semibold
-              text-sm
-            ">
+            {/* USERNAME - LARGE SCREEN ONLY */}
+            <div
+              className="
+                hidden
+                lg:block
+                bg-blue-600
+                px-4
+                py-2
+                rounded-full
+                font-semibold
+                text-sm
+              "
+            >
 
               {userInfo.name}
 
             </div>
-
-
-
-
 
             {/* LOGOUT */}
             <button
@@ -240,11 +215,15 @@ const Navbar = () => {
               className="
                 bg-red-500
                 hover:bg-red-600
-                px-4
+                px-3
+                md:px-4
                 py-2
                 rounded-lg
                 transition
                 font-medium
+                text-xs
+                sm:text-sm
+                md:text-base
               "
             >
 
@@ -262,7 +241,5 @@ const Navbar = () => {
 
   );
 };
-
-
 
 export default Navbar;

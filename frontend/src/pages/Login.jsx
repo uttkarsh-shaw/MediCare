@@ -9,8 +9,6 @@ from "../context/AuthContext";
 import toast
 from "react-hot-toast";
 
-
-
 const Login = () => {
 
   const [formData, setFormData] =
@@ -22,17 +20,11 @@ const Login = () => {
 
     });
 
-
-
-
   const { setUserInfo } =
     useAuth();
 
   const navigate =
     useNavigate();
-
-
-
 
   const handleChange = (e) => {
 
@@ -47,18 +39,12 @@ const Login = () => {
 
   };
 
-
-
-
   const handleSubmit =
     async (e) => {
 
       e.preventDefault();
 
       try {
-
-
-
 
         // LOGIN API
         const response =
@@ -85,16 +71,10 @@ const Login = () => {
 
           );
 
-
-
-
         const data =
           await response.json();
 
         console.log(data);
-
-
-
 
         // LOGIN FAILED
         if (!response.ok) {
@@ -107,16 +87,10 @@ const Login = () => {
 
         }
 
-
-
-
         // SUCCESS TOAST
         toast.success(
           "Login Successful"
         );
-
-
-
 
         // SAVE USER
         localStorage.setItem(
@@ -127,18 +101,9 @@ const Login = () => {
 
         );
 
-
-
-
         setUserInfo(data);
 
-
-
-
-        // =========================
         // ADMIN FLOW
-        // =========================
-
         if (
           data.role === "admin"
         ) {
@@ -151,21 +116,12 @@ const Login = () => {
 
         }
 
-
-
-
-        // =========================
         // DOCTOR FLOW
-        // =========================
-
         if (
           data.role === "doctor"
         ) {
 
           try {
-
-
-
 
             // CHECK PROFILE
             const profileResponse =
@@ -186,9 +142,6 @@ const Login = () => {
 
               );
 
-
-
-
             // PROFILE EXISTS
             if (
               profileResponse.ok
@@ -200,16 +153,11 @@ const Login = () => {
 
             }
 
-
-
-
             // PROFILE NOT EXISTS
             else {
 
               navigate(
-
                 "/create-doctor-profile"
-
               );
 
             }
@@ -217,22 +165,14 @@ const Login = () => {
           } catch (error) {
 
             navigate(
-
               "/create-doctor-profile"
-
             );
 
           }
 
         }
 
-
-
-
-        // =========================
         // PATIENT FLOW
-        // =========================
-
         else {
 
           navigate(
@@ -252,9 +192,6 @@ const Login = () => {
       }
     };
 
-
-
-
   return (
 
     <div className="
@@ -264,11 +201,8 @@ const Login = () => {
       justify-center
       bg-gray-100
       px-4
+      py-10
     ">
-
-
-
-
 
       <form
 
@@ -281,11 +215,9 @@ const Login = () => {
           shadow-xl
           w-full
           max-w-md
+          mx-auto
         "
       >
-
-
-
 
         {/* HEADING */}
         <div className="
@@ -304,9 +236,6 @@ const Login = () => {
 
           </h2>
 
-
-
-
           <p className="
             text-gray-500
           ">
@@ -317,10 +246,6 @@ const Login = () => {
           </p>
 
         </div>
-
-
-
-
 
         {/* EMAIL */}
         <input
@@ -344,14 +269,12 @@ const Login = () => {
             p-4
             rounded-2xl
             mb-5
+            text-black
+            placeholder:text-gray-500
           "
 
           required
         />
-
-
-
-
 
         {/* PASSWORD */}
         <input
@@ -375,14 +298,12 @@ const Login = () => {
             p-4
             rounded-2xl
             mb-6
+            text-black
+            placeholder:text-gray-500
           "
 
           required
         />
-
-
-
-
 
         {/* BUTTON */}
         <button
@@ -411,7 +332,5 @@ const Login = () => {
     </div>
   );
 };
-
-
 
 export default Login;

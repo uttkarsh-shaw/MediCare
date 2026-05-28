@@ -12,8 +12,6 @@ import {
 import DiseaseCard
 from "../components/DiseaseCard";
 
-
-
 const diseases = [
 
   {
@@ -35,8 +33,6 @@ const diseases = [
       "https://images.unsplash.com/photo-1584515933487-779824d29309",
   },
 
-
-
   {
     id: 2,
 
@@ -56,8 +52,6 @@ const diseases = [
       "https://images.unsplash.com/photo-1628348070889-cb656235b4eb",
   },
 
-
-
   {
     id: 3,
 
@@ -74,10 +68,8 @@ const diseases = [
       <FaAllergies />,
 
     image:
-       "https://images.unsplash.com/photo-1559599101-f09722fb4948?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1559599101-f09722fb4948?q=80&w=1200&auto=format&fit=crop",
   },
-
-
 
   {
     id: 4,
@@ -98,8 +90,6 @@ const diseases = [
       "https://images.unsplash.com/photo-1581595219315-a187dd40c322",
   },
 
-
-
   {
     id: 5,
 
@@ -118,8 +108,6 @@ const diseases = [
     image:
       "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5",
   },
-
-
 
   {
     id: 6,
@@ -140,8 +128,6 @@ const diseases = [
       "https://images.unsplash.com/photo-1576091160550-2173dba999ef",
   },
 
-
-
   {
     id: 7,
 
@@ -161,8 +147,6 @@ const diseases = [
       "https://images.unsplash.com/photo-1493836512294-502baa1986e2",
   },
 
-
-
   {
     id: 8,
 
@@ -181,8 +165,6 @@ const diseases = [
     image:
       "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b",
   },
-
-
 
   {
     id: 9,
@@ -205,8 +187,6 @@ const diseases = [
 
 ];
 
-
-
 const HealthInfoPage = () => {
 
   return (
@@ -214,36 +194,37 @@ const HealthInfoPage = () => {
     <div className="
       min-h-screen
       bg-gray-100
-      px-6
+      px-4
+      sm:px-6
       py-10
+      overflow-x-hidden
     ">
-
-
-
 
       {/* HEADING */}
       <div className="
         text-center
         mb-14
+        max-w-4xl
+        mx-auto
       ">
 
         <h1 className="
-          text-5xl
+          text-3xl
+          sm:text-5xl
           font-bold
           text-blue-700
           mb-4
+          leading-tight
         ">
 
           Health Information 🏥
 
         </h1>
 
-
-
-
         <p className="
           text-gray-600
-          text-lg
+          text-base
+          sm:text-lg
           max-w-3xl
           mx-auto
           leading-8
@@ -256,10 +237,6 @@ const HealthInfoPage = () => {
 
       </div>
 
-
-
-
-
       {/* CARDS */}
       <div className="
         max-w-7xl
@@ -269,6 +246,7 @@ const HealthInfoPage = () => {
         md:grid-cols-2
         xl:grid-cols-3
         gap-8
+        items-stretch
       ">
 
         {diseases.map((item) => (
@@ -286,7 +264,5 @@ const HealthInfoPage = () => {
 
   );
 };
-
-
 
 export default HealthInfoPage;

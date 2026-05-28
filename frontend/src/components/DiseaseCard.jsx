@@ -15,9 +15,6 @@ const DiseaseCard = ({ item }) => {
       border-gray-100
     ">
 
-
-
-
       {/* IMAGE SECTION */}
       <div
         className="
@@ -33,19 +30,12 @@ const DiseaseCard = ({ item }) => {
         }}
       >
 
-
-
-
         {/* DARK OVERLAY */}
         <div className="
           absolute
           inset-0
           bg-black/45
         " />
-
-
-
-
 
         {/* CONTENT */}
         <div className="
@@ -66,9 +56,6 @@ const DiseaseCard = ({ item }) => {
 
           </div>
 
-
-
-
           <h2 className="
             text-3xl
             font-bold
@@ -78,9 +65,6 @@ const DiseaseCard = ({ item }) => {
             {item.disease}
 
           </h2>
-
-
-
 
           <p className="
             text-white/90
@@ -96,10 +80,6 @@ const DiseaseCard = ({ item }) => {
 
       </div>
 
-
-
-
-
       {/* BOTTOM */}
       <div className="
         p-6
@@ -114,9 +94,6 @@ const DiseaseCard = ({ item }) => {
           {item.description}
 
         </p>
-
-
-
 
         <button className="
           w-full
@@ -140,7 +117,5 @@ const DiseaseCard = ({ item }) => {
 
   );
 };
-
-
 
 export default DiseaseCard;
