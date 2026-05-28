@@ -11,7 +11,7 @@ const PaymentButton = ({ appointment }) => {
 
 
       const orderResponse = await fetch(
-        "http://localhost:5000/api/payment/create-order",
+        "https://medicare-wiyz.onrender.com/api/payment/create-order",
         {
           method: "POST",
 
@@ -51,7 +51,7 @@ const PaymentButton = ({ appointment }) => {
         handler: async function (response) {
 
           const verifyResponse = await fetch(
-            "http://localhost:5000/api/payment/verify",
+            "https://medicare-wiyz.onrender.com/api/payment/verify",
             {
               method: "POST",
 

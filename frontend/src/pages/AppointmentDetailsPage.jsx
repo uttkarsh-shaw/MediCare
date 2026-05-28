@@ -51,7 +51,7 @@ const AppointmentDetailsPage = () => {
 
 
       const response = await fetch(
-        `http://localhost:5000/api/appointments/${appointmentId}`,
+        `https://medicare-wiyz.onrender.com/api/appointments/${appointmentId}`,
         {
           headers: {
             Authorization: `Bearer ${userInfo.token}`,

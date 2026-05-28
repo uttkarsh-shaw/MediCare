@@ -65,7 +65,7 @@ const DoctorDashboard = () => {
         const response =
           await fetch(
 
-            "http://localhost:5000/api/doctors/my-profile",
+            "https://medicare-wiyz.onrender.com/api/doctors/my-profile",
 
             {
 
@@ -126,7 +126,7 @@ const DoctorDashboard = () => {
         const response =
           await fetch(
 
-            "http://localhost:5000/api/appointments/doctor",
+            "https://medicare-wiyz.onrender.com/api/appointments/doctor",
 
             {
 
@@ -182,7 +182,7 @@ const DoctorDashboard = () => {
 
         await fetch(
 
-          `http://localhost:5000/api/appointments/status/${id}`,
+          `https://medicare-wiyz.onrender.com/api/appointments/status/${id}`,
 
           {
 
@@ -272,7 +272,7 @@ const DoctorDashboard = () => {
         const response =
           await fetch(
 
-            "http://localhost:5000/api/doctors/update-profile",
+            "https://medicare-wiyz.onrender.com/api/doctors/update-profile",
 
             {
 

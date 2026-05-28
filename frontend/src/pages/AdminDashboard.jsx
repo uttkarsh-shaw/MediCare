@@ -19,7 +19,7 @@ const AdminDashboard = () => {
 
       const response = await fetch(
 
-        "http://localhost:5000/api/doctors/all",
+        "https://medicare-wiyz.onrender.com/api/doctors/all",
 
         {
           headers: {
@@ -53,7 +53,7 @@ const AdminDashboard = () => {
 
       await fetch(
 
-        `http://localhost:5000/api/doctors/approve/${id}`,
+        `https://medicare-wiyz.onrender.com/api/doctors/approve/${id}`,
 
         {
           method: "PUT",
@@ -87,7 +87,7 @@ const AdminDashboard = () => {
 
       await fetch(
 
-        `http://localhost:5000/api/doctors/reject/${id}`,
+        `https://medicare-wiyz.onrender.com/api/doctors/reject/${id}`,
 
         {
           method: "PUT",

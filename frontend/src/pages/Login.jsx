@@ -64,7 +64,7 @@ const Login = () => {
         const response =
           await fetch(
 
-            "http://localhost:5000/api/auth/login",
+            "https://medicare-wiyz.onrender.com/api/auth/login",
 
             {
 
@@ -171,7 +171,7 @@ const Login = () => {
             const profileResponse =
               await fetch(
 
-                "http://localhost:5000/api/doctors/my-profile",
+                "https://medicare-wiyz.onrender.com/api/doctors/my-profile",
 
                 {
 

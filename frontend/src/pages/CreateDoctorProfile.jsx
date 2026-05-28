@@ -146,7 +146,7 @@ const CreateDoctorProfile = () => {
       const response =
       await fetch(
 
-        "http://localhost:5000/api/doctors/create-profile",
+        "https://medicare-wiyz.onrender.com/api/doctors/create-profile",
 
         {
 

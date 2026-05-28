@@ -87,7 +87,7 @@ const PrescriptionForm = ({
 
         const response = await fetch(
 
-          `http://localhost:5000/api/appointments/prescription/${appointmentId}`,
+          `https://medicare-wiyz.onrender.com/api/appointments/prescription/${appointmentId}`,
 
           {
 

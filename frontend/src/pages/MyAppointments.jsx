@@ -42,7 +42,7 @@ const MyAppointments = () => {
       const response =
       await fetch(
 
-        "http://localhost:5000/api/appointments/my-appointments",
+        "https://medicare-wiyz.onrender.com/api/appointments/my-appointments",
 
         {
 
@@ -99,7 +99,7 @@ const MyAppointments = () => {
 
       await fetch(
 
-        `http://localhost:5000/api/appointments/${id}`,
+        `https://medicare-wiyz.onrender.com/api/appointments/${id}`,
 
         {
 
