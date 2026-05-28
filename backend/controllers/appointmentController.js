@@ -2,7 +2,7 @@ const Appointment =
 require("../models/Appointment");
 
 const Doctor =
-require("../models/Doctor");
+require("../models/doctor");
 
 const sendEmail =
 require("../utils/sendEmail");
